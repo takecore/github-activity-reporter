@@ -1,0 +1,19 @@
+{
+  "name": "github-activity-reporter",
+  "version": "1.0.0",
+  "description": "github activity reporter makes us happy.",
+  "main": "index.js",
+  "scripts": {
+    "get": "node index.js"
+  },
+  "author": "takecore",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^16.17.0",
+    "clipboardy": "^1.2.3",
+    "command-line-args": "^5.0.2",
+    "command-line-usage": "^5.0.5",
+    "moment": "^2.24.0",
+    "nunjucks": "^3.2.0"
+  }
+}

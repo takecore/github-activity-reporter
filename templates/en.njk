@@ -1,0 +1,60 @@
+# Github Activity from 2019-01-01 until 2019-01-01
+
+{%- if openedIssues | length %}
+
+## {{ openedIssues | length }} Issue opened.
+{% for item in openedIssues | list %}
+- [{{ item.repo.name }} #{{ item.payload.issue.number }} {{ item.payload.issue.title }}]({{ item.payload.issue.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if closedIssues | length %}
+## {{ closedIssues | length }} Issue closed.
+
+Issue stats is below.
+
+| Contents              | value  |
+| :-------------------- | :----- |
+| 1 issue per Comment   | {{ (totalClosedIssueCommentCount / closedIssues | length) | round(2) }}   |
+{% for item in closedIssues | list %}
+- [{{ item.repo.name }} #{{ item.payload.issue.number }} {{ item.payload.issue.title }}]({{ item.payload.issue.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if openedPrs | length %}
+## {{ openedPrs | length }} PullRequest Opened.
+{% for item in openedPrs | list %}
+- [{{ item.repo.name }} #{{ item.payload.pull_request.number }} {{ item.payload.pull_request.title }}]({{ item.payload.pull_request.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if closedPrs | length %}
+## {{ closedPrs | length }} PullRequest Closeed.
+
+PullRequest stats is below.
+
+| Contents                 | value  |
+| :----------------------- | :----- |
+| 1 PR per Commit          | {{ (totalClosedPrCommitCount / closedPrs | length) | round(2) }}   |
+| 1 PR per Comment         | {{ (totalClosedPrCommentCount / closedPrs | length) | round(2) }}   |
+| 1 PR per ReviewComment   | {{ (totalClosedPrReviewCommentCount / closedPrs | length) | round(2) }}   |
+| 1 PR per Changed files   | {{ (totalClosedPrChangedFileCount / closedPrs | length) | round(2) }}   |
+| diffstat                 | +{{ totalClosedPrAdditionLineCount }} -{{ totalClosedPrDeletionLineCount }} |
+{% for item in closedPrs | list %}
+- [{{ item.repo.name }} #{{ item.payload.pull_request.number }} {{ item.payload.pull_request.title }}]({{ item.payload.pull_request.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if issueComments | length %}
+## Perform {{ issueComments | length }} IssueComment.
+{% for item in issueComments | list %}
+- [{{ item.repo.name }} #{{ item.payload.issue.number }} #issuecomment-{{ item.payload.comment.id }}]({{ item.payload.comment.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if reviewComments | length %}
+## Perform {{ reviewComments | length }} PullRequestReviewComment.
+{% for item in reviewComments | list %}
+- [{{ item.repo.name }} #{{ item.payload.pull_request.number }} #discussion_r{{ item.payload.comment.id }}]({{ item.payload.comment.html_url }})
+{%- endfor %}
+{% endif %}

@@ -1,0 +1,60 @@
+# Github Activity from 2019-01-01 until 2019-01-01
+
+{%- if openedIssues | length %}
+
+## {{ openedIssues | length }} 件の Issue を Open しました。
+{% for item in openedIssues | list %}
+- [{{ item.repo.name }} #{{ item.payload.issue.number }} {{ item.payload.issue.title }}]({{ item.payload.issue.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if closedIssues | length %}
+## {{ closedIssues | length }} 件の Issue を Close しました。
+
+Issue stats は以下の通りです。
+
+| 内容                            | 数     |
+| :------------------------------ | :----- |
+| 1 issue あたりの平均 Comment 数 | {{ (totalClosedIssueCommentCount / closedIssues | length) | round(2) }}   |
+{% for item in closedIssues | list %}
+- [{{ item.repo.name }} #{{ item.payload.issue.number }} {{ item.payload.issue.title }}]({{ item.payload.issue.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if openedPrs | length %}
+## {{ openedPrs | length }} 件の PullRequest を Open しました。
+{% for item in openedPrs | list %}
+- [{{ item.repo.name }} #{{ item.payload.pull_request.number }} {{ item.payload.pull_request.title }}]({{ item.payload.pull_request.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if closedPrs | length %}
+## {{ closedPrs | length }} 件の PullRequest を Close しました。
+
+PullRequest stats は以下の通りです。
+
+| 内容                              | 数     |
+| :-------------------------------- | :----- |
+| 1 PRあたりの平均 Commit 数        | {{ (totalClosedPrCommitCount / closedPrs | length) | round(2) }}   |
+| 1 PRあたりの平均 Comment 数       | {{ (totalClosedPrCommentCount / closedPrs | length) | round(2) }}   |
+| 1 PRあたりの平均 ReviewComment 数 | {{ (totalClosedPrReviewCommentCount / closedPrs | length) | round(2) }}   |
+| 1 PRあたりの平均変更ファイル数    | {{ (totalClosedPrChangedFileCount / closedPrs | length) | round(2) }}   |
+| 差分統計                          | +{{ totalClosedPrAdditionLineCount }} -{{ totalClosedPrDeletionLineCount }} |
+{% for item in closedPrs | list %}
+- [{{ item.repo.name }} #{{ item.payload.pull_request.number }} {{ item.payload.pull_request.title }}]({{ item.payload.pull_request.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if issueComments | length %}
+## {{ issueComments | length }} 件の IssueComment をしました。
+{% for item in issueComments | list %}
+- [{{ item.repo.name }} #{{ item.payload.issue.number }} #issuecomment-{{ item.payload.comment.id }}]({{ item.payload.comment.html_url }})
+{%- endfor %}
+{% endif %}
+
+{%- if reviewComments | length %}
+## {{ reviewComments | length }} 件の PullRequestReviewComment をしました。
+{% for item in reviewComments | list %}
+- [{{ item.repo.name }} #{{ item.payload.pull_request.number }} #discussion_r{{ item.payload.comment.id }}]({{ item.payload.comment.html_url }})
+{%- endfor %}
+{% endif %}
