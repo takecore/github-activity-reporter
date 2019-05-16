@@ -2,16 +2,16 @@
 
 {%- if openedIssues | length %}
 
-## {{ openedIssues | length }} 件の Issue を Open しました。
+#### {{ openedIssues | length }} 件の Issue を Open
 {% for item in openedIssues | list %}
 - [{{ item.repo.name }} #{{ item.payload.issue.number }} {{ item.payload.issue.title }}]({{ item.payload.issue.html_url }})
 {%- endfor %}
 {% endif %}
 
 {%- if closedIssues | length %}
-## {{ closedIssues | length }} 件の Issue を Close しました。
+#### {{ closedIssues | length }} 件の Issue を Close
 
-Issue stats は以下の通りです。
+Issue stats
 
 | 内容                            | 数     |
 | :------------------------------ | :----- |
@@ -22,14 +22,14 @@ Issue stats は以下の通りです。
 {% endif %}
 
 {%- if openedPrs | length %}
-## {{ openedPrs | length }} 件の PullRequest を Open しました。
+#### {{ openedPrs | length }} 件の PullRequest を Open
 {% for item in openedPrs | list %}
 - [{{ item.repo.name }} #{{ item.payload.pull_request.number }} {{ item.payload.pull_request.title }}]({{ item.payload.pull_request.html_url }})
 {%- endfor %}
 {% endif %}
 
 {%- if closedPrs | length %}
-## {{ closedPrs | length }} 件の PullRequest を Close しました。
+#### {{ closedPrs | length }} 件の PullRequest を Close
 
 PullRequest stats は以下の通りです。
 
@@ -46,14 +46,14 @@ PullRequest stats は以下の通りです。
 {% endif %}
 
 {%- if issueComments | length %}
-## {{ issueComments | length }} 件の IssueComment をしました。
+#### {{ issueComments | length }} 件の IssueComment
 {% for item in issueComments | list %}
 - [{{ item.repo.name }} #{{ item.payload.issue.number }} #issuecomment-{{ item.payload.comment.id }}]({{ item.payload.comment.html_url }})
 {%- endfor %}
 {% endif %}
 
 {%- if reviewComments | length %}
-## {{ reviewComments | length }} 件の PullRequestReviewComment をしました。
+#### {{ reviewComments | length }} 件の PullRequestReviewComment
 {% for item in reviewComments | list %}
 - [{{ item.repo.name }} #{{ item.payload.pull_request.number }} #discussion_r{{ item.payload.comment.id }}]({{ item.payload.comment.html_url }})
 {%- endfor %}
